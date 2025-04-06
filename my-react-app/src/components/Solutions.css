@@ -1,0 +1,541 @@
+.solutions-container {
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #000000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+}
+
+.search-container {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.search-input {
+    width: 50%;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    background-color: #222;
+    color: #fff;
+}
+
+.search-input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+}
+
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.solution-card {
+    background-color: #111;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #333;
+}
+
+.solution-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    background-color: #222;
+}
+
+.solution-card h3 {
+    margin: 0 0 10px 0;
+    color: #fff;
+    text-align: center;
+}
+
+.solution-description {
+    color: #aaa;
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    padding: 40px;
+    text-align: center;
+    color: #fff;
+}
+
+.no-results h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.no-results p {
+    color: #aaa;
+}
+
+/* Flashcard Carousel Styles */
+.flashcard-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.flashcard-container {
+    width: 95%;
+    max-width: 1200px;
+    background-color: #111;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    padding: 20px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 101;
+}
+
+/* New Carousel Styles */
+.carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin: 20px 0;
+}
+
+.carousel-track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 500px;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 2px solid #4a90e2;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.carousel-arrow:hover {
+    background-color: #4a90e2;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.left-arrow {
+    left: 20px;
+}
+
+.right-arrow {
+    right: 20px;
+}
+
+.carousel-card {
+    position: absolute;
+    width: 400px;
+    height: 450px;
+    background-color: #222;
+    border-radius: 12px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.prev-card {
+    left: 10%;
+    transform: translateX(-50%) scale(0.7);
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.active-card {
+    left: 50%;
+    transform: translateX(-50%) scale(1.1);
+    opacity: 1;
+    z-index: 2;
+    background-color: #333;
+    padding: 50px;
+}
+
+.next-card {
+    left: 90%;
+    transform: translateX(-50%) scale(0.7);
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.carousel-card h2, .carousel-card h3 {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.carousel-card h2 {
+    font-size: 28px;
+}
+
+.carousel-card h3 {
+    font-size: 22px;
+}
+
+.flashcard-description {
+    color: #aaa;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 16px;
+    padding: 0 15px;
+}
+
+.flashcard-detail {
+    color: #fff;
+    line-height: 1.8;
+    overflow-y: auto;
+    flex: 1;
+    font-size: 16px;
+    padding: 0 10px;
+}
+
+.carousel-indicator {
+    text-align: center;
+    color: #aaa;
+    margin-top: 20px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.indicator-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    min-width: 80px;
+}
+
+.indicator-arrow {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 2px solid #4a90e2;
+    border-radius: 50%;
+    color: white;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator-arrow:hover {
+    background-color: #4a90e2;
+    transform: scale(1.1);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1200px) {
+    .solutions-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .carousel-card {
+        width: 350px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .solutions-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .carousel-card {
+        width: 300px;
+        height: 350px;
+    }
+    
+    .prev-card {
+        left: 5%;
+    }
+    
+    .next-card {
+        left: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .solutions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .carousel-track {
+        height: 400px;
+    }
+    
+    .carousel-card {
+        width: 280px;
+        height: 330px;
+    }
+    
+    .prev-card, .next-card {
+        display: none;
+    }
+    
+    .active-card {
+        left: 50%;
+    }
+}
+
+/* Fullscreen button styles */
+.fullscreen-button {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #fff;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.fullscreen-button:hover {
+    background-color: rgba(74, 144, 226, 0.7);
+    transform: scale(1.1);
+}
+
+/* Fullscreen mode styles */
+.carousel-card.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 40px;
+    z-index: 1000;
+    transform: none !important;
+    left: 0 !important;
+    background-color: #111;
+}
+
+.carousel-card.fullscreen .fullscreen-button {
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 2px solid #fff;
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+}
+
+.carousel-card.fullscreen .flashcard-detail {
+    font-size: 18px;
+    padding: 20px;
+}
+
+.flashcard-overlay.fullscreen {
+    background-color: white;
+}
+
+.flashcard-container.fullscreen {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 20px;
+}
+
+.flashcard-container.fullscreen .carousel-wrapper {
+    height: calc(100% - 60px);
+}
+
+.flashcard-container.fullscreen .carousel-card {
+    height: 100%;
+    max-height: none;
+}
+
+.flashcard-container.fullscreen .active-card {
+    transform: scale(1);
+}
+
+.flashcard-container.fullscreen .prev-card,
+.flashcard-container.fullscreen .next-card {
+    opacity: 0.3;
+    transform: scale(0.8);
+} 
+
+.card-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+  }
+  .collapse-button {
+    position: absolute;
+    top: 20px;
+    right: 80px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #fff;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.collapse-button:hover {
+    background-color: rgba(74, 144, 226, 0.7);
+    transform: scale(1.1);
+}
+
+  /* Make sure the fullscreen card doesn't hide the button */
+  .carousel-card.active-card.fullscreen {
+    overflow: visible;
+  }
+
+  /* Add these to your existing CSS */
+.loading-indicator {
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.solution-error {
+    color: #ff6b6b;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.flashcard-detail {
+    overflow-y: auto;
+    max-height: 60vh;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.flashcard-detail img {
+    max-width: 100%;
+}
+
+/* Fullscreen mode */
+.carousel-card.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    padding: 2rem;
+    background: white;
+    overflow-y: auto;
+}
+
+.carousel-card.fullscreen .flashcard-detail {
+    max-height: calc(100vh - 200px);
+}
+
+/* Loading spinner */
+.loading-spinner {
+    grid-column: 1 / -1; /* Span full width */
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
