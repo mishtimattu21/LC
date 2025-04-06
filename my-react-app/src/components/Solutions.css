@@ -208,6 +208,8 @@
 
 .active-card {
     left: 50%;
+    max-height: 70vh;  /* adjust height as needed */
+    overflow-y: auto;
     transform: translateX(-50%) scale(1.1);
     opacity: 1;
     z-index: 2;
@@ -392,11 +394,13 @@
 
 .carousel-card.fullscreen .fullscreen-button {
     top: 20px;
+    max-height: none;
+    height: 100%;
+    overflow-y: visible;
     right: 20px;
     background-color: rgba(0, 0, 0, 0.7);
     border: 2px solid #fff;
     width: 50px;
-    height: 50px;
     font-size: 28px;
 }
 
@@ -539,3 +543,28 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+
+.company-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+    justify-content: center;
+  }
+  
+  .company-tag {
+    background-color: #2d2d2d;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+  
+  .company-tag:hover {
+    background-color: #3a3a3a;
+  }
+  
